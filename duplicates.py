@@ -10,7 +10,6 @@ def find_duplicates(path, saved_path_files={}, duplicates=[]):
         for entry in folder_iterator:
             if entry.is_file():
                 file_information = (entry.name, entry.stat().st_size)
-                #print(file_information)
                 if file_information in saved_path_files:
                     duplicates.append((saved_path_files[file_information], entry.path))
                 else:
@@ -25,5 +24,10 @@ def print_duplicates(duplicates):
 
 
 if __name__ == '__main__':
-    duplicates = (find_duplicates('/home/dmitry'))
+    default_path = '.'
+    if len(sys.argv) > 1:
+        path = sys.argv[1]
+    else:
+        path = default_path
+    duplicates = find_duplicates(path)
     print_duplicates(duplicates)
