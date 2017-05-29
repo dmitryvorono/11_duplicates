@@ -11,7 +11,8 @@ def find_duplicates(path, saved_path_files={}, duplicates=[]):
             if entry.is_file():
                 file_information = (entry.name, entry.stat().st_size)
                 if file_information in saved_path_files:
-                    duplicates.append((saved_path_files[file_information], entry.path))
+                    duplicates.append((saved_path_files[file_information],
+                                       entry.path))
                 else:
                     saved_path_files[file_information] = entry.path
             elif entry.is_dir():
