@@ -1,6 +1,7 @@
 import sys
 import os
 import pprint
+import argparse
 
 
 def find_duplicates(path, saved_path_files={}, duplicates=[]):
@@ -25,10 +26,8 @@ def print_duplicates(duplicates):
 
 
 if __name__ == '__main__':
-    default_path = '.'
-    if len(sys.argv) > 1:
-        path = sys.argv[1]
-    else:
-        path = default_path
-    duplicates = find_duplicates(path)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path', type=str, nargs='?', help='Path to target folder', default=os.getcwd())
+    args = parser.parse_args()
+    duplicates = find_duplicates(args.path)
     print_duplicates(duplicates)
