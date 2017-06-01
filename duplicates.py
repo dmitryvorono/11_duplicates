@@ -1,4 +1,3 @@
-import sys
 import os
 import pprint
 import argparse
@@ -27,7 +26,8 @@ def print_duplicates(duplicates):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('path', type=str, nargs='?', help='Path to target folder', default=os.getcwd())
+    parser.add_argument('path', type=str, nargs='?',
+                        help='Path to target folder', default=os.getcwd())
     args = parser.parse_args()
     duplicates = find_duplicates(args.path)
     print_duplicates(duplicates)
